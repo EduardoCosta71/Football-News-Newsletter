@@ -4,6 +4,7 @@ import os
 
 
 load_dotenv() #carrega as variaveis de ambiente do arquivo .env
+
 #Iniciação com o Flask
 app = Flask(__name__, template_folder="app/templates")
 
