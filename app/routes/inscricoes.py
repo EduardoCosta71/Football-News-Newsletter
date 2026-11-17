@@ -25,7 +25,7 @@ def inscricoes_app(app):
         return inscrito is not None
     
 #======================================================================================
-    
+    #Pagina de Inscricao
     @app.route('/inscricao', methods=["GET", "POST"])
     def inscricao():
 
@@ -62,4 +62,4 @@ def inscricoes_app(app):
 
             return redirect(url_for('inscricao'))
 
-        return render_template('index.html')
+        return render_template('inscricao.html')

@@ -1,23 +1,190 @@
-<!doctype html>
-<html lang="pt-BR">
+
+<!DOCTYPE html>
+<html lang="pt-br">
+
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Newsletter de Futebol</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Football News | Notícias de Futebol</title>
 </head>
+
 <body>
+
+    <!-- Cabeçalho -->
+    <header>
+
+        <h1>Football News</h1>
+
+        <nav>
+            <a href="/">Início</a>
+            <a href="#noticias">Notícias</a>
+            <a href="#jogos">Jogos</a>
+            <a href="#newsletter">Newsletter</a>
+        </nav>
+
+    </header>
+
+
+    <!-- Conteúdo principal -->
     <main>
-        <h1>Newsletter de Futebol</h1>
-        <p>Inscreva-se para receber notícias de futebol.</p>
-        <form action="{{ url_for('inscricao') }}" method="post">
-            <label for="nome">Nome</label>
-            <input id="nome" name="nome" type="text" required>
 
-            <label for="email">Email</label>
-            <input id="email" name="email" type="email" required>
+        <!-- Notícia em destaque -->
+        <section id="destaque">
 
-            <button type="submit">Inscrever-se</button>
-        </form>
+            <h2>Fique por dentro do futebol</h2>
+
+            <p>As principais notícias do mundo do futebol em um só lugar.</p>
+
+        </section>
+
+
+        <!-- Últimas notícias -->
+        <section id="noticias">
+
+            <h2>Últimas notícias</h2>
+
+            <div class="lista-noticias">
+
+                {% for noticia in noticias %}
+
+                <article class="card-noticia">
+
+                    {% if noticia.imagem %}
+                        
+                        <img src="{{ noticia.imagem }}" alt="{{ noticia.titulo }}">
+
+                    {% endif %}
+
+                    <div class="conteudo-noticia">
+
+                        <h3>{{ noticia.titulo }}</h3>
+                        <p>{{ noticia.descricao }}</p>
+                        <span>{{ noticia.fonte }}</span>
+
+                        <a href="{{ noticia.link }}" target="_blank">Ler mais</a>
+
+                    </div>
+
+
+                </article>
+
+                {% else %}
+
+                <p>Nenhuma notícia encontrada.</p>
+
+                {% endfor %}
+
+            </div>
+
+
+        </section>
+
+
+        <!-- Jogos -->
+        <section id="jogos">
+
+            <h2>Jogos e resultados</h2>
+
+            <div class="lista-jogos">
+
+                {% for partida in partidas %}
+
+                <article class="card-jogo">
+
+                    <!-- Card de jogo -->
+                    <h3>{{ partida.time1 }} vs {{ partida.time2 }}</h3>
+
+                    <p>Status: {{ partida.status }}</p>
+
+                    <p>{{ partida.data }} - {{ partida.local }}</p>
+
+                    <!-- Placar -->
+                    {% if partida.score.fullTime.home is not none
+                        and partida.score.fullTime.away is not none %}
+
+                        <p> Placar: {{ partida.score.fullTime.home }} - {{ partida.score.fullTime.away }}</p>
+
+                        {% else %}
+
+                        <p> Placar: Aguardando resultado</p>
+
+                    {% endif %}
+
+                    <p>Data: {{ partida.utcDate }}</p>
+
+                </article>
+
+                {% else %}
+
+                <p>Nenhuma partida encontrada.</p>
+
+                {% endfor %}
+
+                
+
+            </div>
+
+        </section>
+
+
+        <!-- Newsletter -->
+        <section id="newsletter">
+
+            <h2>Receba as notícias no seu e-mail</h2>
+
+            <p>Inscreva-se gratuitamente na nossa newsletter.</p>
+
+            <a href="/inscricao">Quero me inscrever</a>
+
+        </section>
+
+
+        <section id="competicoes">
+
+            <h2>Competições</h2>
+
+            <div class="lista-competicoes">
+
+                {% for competicao in competicoes %}
+
+                <article class="card-competicao">
+
+                    <h3>{{ competicao.name }}</h3>
+
+                    <p>País: {{ competicao.area.name }}</p>
+
+                    <p>Tipo: {{ competicao.type }}</p>
+
+                    <p>Código: {{ competicao.code }}</p>
+
+                    <p>Emblema: <img src="{{ competicao.emblema }}" alt="{{ competicao.nome }}"></p>
+
+                </article>
+
+                {% else %}
+
+                <p>Nenhuma competição encontrada.</p>
+
+                {% endfor %}
+
+            </div>
+
+
+        </section>
+
+
+
     </main>
+
+
+    <!-- Rodapé -->
+    <footer>
+
+        <p>Football News - Notícias do mundo do futebol.</p>
+
+    </footer>
+
 </body>
+
 </html>

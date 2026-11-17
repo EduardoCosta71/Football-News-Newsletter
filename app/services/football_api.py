@@ -31,11 +31,13 @@ def request(endpoint, parametros=None):
     return resposta.json()
 
 
-#Função responsavel por requisitar as competicoes disponiveis.
+# Função responsável por requisitar as competições disponíveis.
 def search_competitions():
-    """Retornar as competicoes disponiveis"""
+    """Retornar as competições disponíveis"""
 
-    return request("competitions")
+    dados = request("competitions")
+
+    return dados.get("competitions", [])
 
 
 #Função responsvel por requisitar partidas.
