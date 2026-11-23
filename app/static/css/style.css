@@ -1,0 +1,380 @@
+/* Identidade visual e estilos globais */
+:root {
+    color-scheme: dark;
+    --color-background: #0B1120;
+    --color-surface: #111827;
+    --color-card: #1F2937;
+    --color-green: #22C55E;
+    --color-green-dark: #15803D;
+    --color-text: #F9FAFB;
+    --color-muted: #9CA3AF;
+    --color-border: #374151;
+    --content-width: 1160px;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 5.5rem;
+}
+
+body {
+    min-width: 320px;
+    margin: 0;
+    background: var(--color-background);
+    color: var(--color-text);
+    font-family: Inter, "Segoe UI", Arial, sans-serif;
+    line-height: 1.6;
+}
+
+a {
+    color: var(--color-green);
+    text-decoration: none;
+}
+
+a:hover {
+    color: #4ade80;
+}
+
+a:focus-visible {
+    outline: 2px solid var(--color-green);
+    outline-offset: 4px;
+}
+
+/* Cabeçalho e navegação */
+header {
+    position: sticky;
+    z-index: 5;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 2rem;
+    padding: 1rem max(1.5rem, calc((100% - var(--content-width)) / 2));
+    border-bottom: 1px solid var(--color-border);
+    background: rgb(17 24 39 / 96%);
+    backdrop-filter: blur(12px);
+}
+
+header h1 {
+    margin: 0;
+    color: var(--color-text);
+    font-size: 1.35rem;
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    white-space: nowrap;
+}
+
+header h1::first-letter {
+    color: var(--color-green);
+}
+
+nav {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 0.4rem 1.6rem;
+}
+
+nav a {
+    color: #d1d5db;
+    font-size: 0.92rem;
+    font-weight: 600;
+    transition: color 160ms ease;
+}
+
+nav a:hover {
+    color: var(--color-green);
+}
+
+/* Conteúdo principal e títulos de seção */
+main {
+    width: min(var(--content-width), calc(100% - 3rem));
+    margin: 0 auto;
+}
+
+main > section {
+    padding: 3.5rem 0;
+}
+
+main > section > h2 {
+    margin: 0 0 1.5rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+    line-height: 1.2;
+    letter-spacing: -0.035em;
+}
+
+/* Apresentação do portal */
+#destaque {
+    position: relative;
+    overflow: hidden;
+    margin-top: 2rem;
+    padding: clamp(2.5rem, 7vw, 5.5rem);
+    border: 1px solid var(--color-border);
+    border-radius: 1.25rem;
+    background:
+        radial-gradient(ellipse at 86% 22%, rgb(34 197 94 / 16%), transparent 34%),
+        linear-gradient(125deg, #111827 5%, #172334 100%);
+}
+
+#destaque h2 {
+    max-width: 720px;
+    margin: 0 0 1rem;
+    font-size: clamp(2.1rem, 5.5vw, 4rem);
+    line-height: 1.08;
+    letter-spacing: -0.055em;
+}
+
+#destaque p {
+    max-width: 560px;
+    margin: 0;
+    color: var(--color-muted);
+    font-size: clamp(1rem, 2vw, 1.15rem);
+}
+
+/* Notícias */
+.lista-noticias,
+.lista-jogos,
+.lista-competicoes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 1.25rem;
+}
+
+.card-noticia,
+.card-jogo,
+.card-competicao {
+    min-width: 0;
+    overflow: hidden;
+    border: 1px solid var(--color-border);
+    border-radius: 0.9rem;
+    background: var(--color-card);
+}
+
+.card-noticia {
+    display: flex;
+    flex-direction: column;
+    transition: border-color 180ms ease, transform 180ms ease;
+}
+
+.card-noticia:hover {
+    transform: translateY(-3px);
+    border-color: #4b5563;
+}
+
+.card-noticia > img {
+    display: block;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--color-surface);
+}
+
+.conteudo-noticia {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 1.25rem;
+}
+
+.conteudo-noticia h3 {
+    margin: 0 0 0.65rem;
+    font-size: 1.12rem;
+    line-height: 1.35;
+}
+
+.conteudo-noticia p {
+    margin: 0 0 1rem;
+    color: #d1d5db;
+}
+
+.conteudo-noticia span {
+    margin-top: auto;
+    color: var(--color-muted);
+    font-size: 0.82rem;
+}
+
+.conteudo-noticia a {
+    display: inline-flex;
+    margin-top: 0.8rem;
+    font-size: 0.9rem;
+    font-weight: 700;
+}
+
+
+
+/* Partidas e placares */
+.card-jogo {
+    padding: 1.25rem;
+    background: linear-gradient(145deg, #1f2937, #182231);
+}
+
+.card-jogo h3 {
+    margin: 0 0 1rem;
+    font-size: 1.12rem;
+    line-height: 1.4;
+}
+
+.card-jogo p {
+    margin: 0.55rem 0 0;
+    color: var(--color-muted);
+    font-size: 0.92rem;
+    overflow-wrap: anywhere;
+}
+
+.card-jogo p:nth-of-type(3),
+.card-jogo p:nth-of-type(4) {
+    color: var(--color-text);
+    font-weight: 700;
+}
+
+
+
+/* Competições */
+.card-competicao {
+    padding: 1.25rem;
+}
+
+.card-competicao h3 {
+    margin: 0 0 1rem;
+    font-size: 1.1rem;
+}
+
+.card-competicao p {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    margin: 0;
+    padding: 0.6rem 0;
+    border-top: 1px solid var(--color-border);
+    color: var(--color-muted);
+    font-size: 0.9rem;
+    overflow-wrap: anywhere;
+}
+
+.card-competicao p img {
+    width: 2.5rem;
+    height: 2.5rem;
+    object-fit: contain;
+}
+
+/* Chamada para a newsletter */
+#newsletter {
+    margin: 1rem 0;
+    padding: clamp(2rem, 5vw, 3.5rem);
+    border: 1px solid rgb(34 197 94 / 28%);
+    border-radius: 1rem;
+    background: linear-gradient(110deg, #12251d, #111827 75%);
+    text-align: center;
+}
+
+#newsletter h2 {
+    margin: 0 0 0.5rem;
+    font-size: clamp(1.5rem, 3vw, 2rem);
+}
+
+#newsletter p {
+    margin: 0 0 1.4rem;
+    color: var(--color-muted);
+}
+
+#newsletter a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.9rem;
+    padding: 0.7rem 1.25rem;
+    border-radius: 0.55rem;
+    background: var(--color-green-dark);
+    color: #fff;
+    font-weight: 700;
+    transition: background-color 160ms ease, transform 160ms ease;
+}
+
+#newsletter a:hover {
+    transform: translateY(-1px);
+    background: var(--color-green);
+    color: #052e16;
+}
+
+
+
+/* Rodapé */
+footer {
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    text-align: center;
+}
+
+footer p {
+    margin: 0;
+    color: var(--color-muted);
+    font-size: 0.9rem;
+}
+
+
+
+/* Ajustes para telas menores */
+@media (max-width: 700px) {
+    header {
+        position: static;
+        flex-direction: column;
+        gap: 0.75rem;
+        padding: 1rem 1.25rem;
+    }
+
+    nav {
+        justify-content: center;
+        gap: 0.55rem 1.1rem;
+    }
+
+    main {
+        width: min(100% - 2rem, var(--content-width));
+    }
+
+    main > section {
+        padding: 2.5rem 0;
+    }
+
+    #destaque {
+        margin-top: 1rem;
+        padding: 2.25rem 1.5rem;
+    }
+
+    #newsletter {
+        margin: 0.5rem 0;
+    }
+}
+
+@media (max-width: 420px) {
+    nav {
+        gap: 0.45rem 0.8rem;
+    }
+
+    nav a {
+        font-size: 0.86rem;
+    }
+
+    .lista-noticias,
+    .lista-jogos,
+    .lista-competicoes {
+        grid-template-columns: minmax(0, 1fr);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+    }
+}

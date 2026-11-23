@@ -24,7 +24,7 @@ def request(endpoint, parametros=None):
 
     }
 
-    resposta = requests.get(f"{url}/{endpoint}", headers=cabecalhos, params=parametros, timeout=10)
+    resposta = requests.get(f"{url}/{endpoint}", headers=cabecalhos, params=parametros, timeout=20)
 
     resposta.raise_for_status()
 
